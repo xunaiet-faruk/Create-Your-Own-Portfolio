@@ -15,7 +15,7 @@ const Navbar = () => {
     // Navigation links data
     const navLinks = [
         { path: '/', name: 'Home' },
-        { path: '/about', name: 'About' },
+        { path: '/portfolio-builder', name: 'PortfolioBuilder' },
         { path: '/projects', name: 'Projects' },
         { path: '/contact', name: 'Contact' },
     ];
@@ -37,7 +37,7 @@ const Navbar = () => {
                                     key={link.path}
                                     to={link.path}
                                     className={({ isActive }) =>
-                                        `px-4 py-2  rounded-lg md:text-sm lg:text-xl font-medium transition-all duration-200 ${isActive
+                                        `px-4 py-2  rounded-lg md:text-sm lg:text-md font-medium transition-all duration-200 ${isActive
                                             ? 'bg-gradient-to-r from-cyan-500  to-purple-700 bg-clip-text text-transparent font-bold'
                                             : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                                         }`

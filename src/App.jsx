@@ -1,15 +1,16 @@
 
 import './App.css'
-import Home from './pages/Homepage/Home'
+import Footer from './Shared/Footer'
 import Navbar from './Shared/Navbar'
+import AppRoutes from './Routes/Routes.jsx'
 
 function App() {
-
   return (
-   <>
-   <Navbar/>
-   <Home/>
-   </>
+    <>
+      <Navbar />
+      <AppRoutes />
+      <Footer />
+    </>
   )
 }
 
