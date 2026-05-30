@@ -1,0 +1,35 @@
+@import "tailwindcss";
+/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ডার্ক গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড */
+body {
+background: linear-gradient(135deg, #0a0a0a, #1e0a1e, #2d0f2d);
+min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+
+/* গ্রেডিয়েন্ট অ্যানিমেশন (অপশনাল) */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body {
+    background: linear-gradient(135deg, #0a0a0a, #0a1a1a, #0f2d2d);
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite;
+}
