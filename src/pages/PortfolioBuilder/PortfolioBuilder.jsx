@@ -12,16 +12,18 @@ import Step5_Projects from './Step5_Projects';
 import Step6_Preview from './Step6_Preview';
 import Step6_TemplateSelector from './Step6_TemplateSelector';
 
+// আপনার ImgBB API Key এখানে বসান
+const IMGBB_API_KEY = "6bb83104364a756c7ef713ea4d6873a3";
 const PortfolioBuilder = () => {
     const axios = Useaxios();
     const [step, setStep] = useState(1);
     const [preview, setPreview] = useState(false);
     const [currentSkill, setCurrentSkill] = useState('');
-    const [profileImage, setProfileImage] = useState(null);
-    const [profileImagePreview, setProfileImagePreview] = useState('');
+    const [profileImage, setProfileImage] = useState(null); // আসল ফাইলটি এখানে থাকবে
+    const [profileImagePreview, setProfileImagePreview] = useState(''); // প্রিভিউ দেখানোর জন্য
     const [loading, setLoading] = useState(false);
     const [generatedLink, setGeneratedLink] = useState(null);
-    const [selectedTemplate, setSelectedTemplate] = useState('modern-dark'); // নতুন state
+    const [selectedTemplate, setSelectedTemplate] = useState('modern-dark');
 
     const [formData, setFormData] = useState({
         fullName: '', title: '', email: '', phone: '', description: '', resumeLink: '', location: '',
@@ -35,12 +37,15 @@ const PortfolioBuilder = () => {
     });
     const [errors, setErrors] = useState({});
 
+    // ইমেজ সিলেক্ট করার ফাংশন
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
+            setProfileImage(file); // ফাইলটি স্টেট-এ সেভ করে রাখছি পরে আপলোড করার জন্য
+            
+            // তাৎক্ষণিক ফ্রন্টএন্ড প্রিভিউ এর জন্য FileReader
             const reader = new FileReader();
             reader.onloadend = () => {
-                setProfileImage(file);
                 setProfileImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
@@ -80,12 +85,12 @@ const PortfolioBuilder = () => {
     };
 
     const handleTemplateNext = () => {
-        // টেমপ্লেট সিলেক্ট করার পর প্রিভিউতে যাবে
         setStep(step + 1);
         setPreview(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    // ফাইনাল সাবমিট ফাংশন
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -96,10 +101,32 @@ const PortfolioBuilder = () => {
         }
 
         setLoading(true);
-        Swal.fire({ title: 'Creating...', text: 'Please wait', icon: 'info', allowOutsideClick: false, showConfirmButton: false, didOpen: () => Swal.showLoading(), background: '#1a1a2e', color: '#fff' });
+        Swal.fire({ title: 'Creating...', text: 'Please wait, uploading data', icon: 'info', allowOutsideClick: false, showConfirmButton: false, didOpen: () => Swal.showLoading(), background: '#1a1a2e', color: '#fff' });
 
         try {
-            // JSON ডাটা তৈরি করুন (টেমপ্লেট যোগ করে)
+            let finalImageUrl = "";
+
+            // ১. যদি ইউজার ইমেজ সিলেক্ট করে থাকে, তবে প্রথমে ImgBB তে আপলোড হবে
+            if (profileImage) {
+                const imgFormData = new FormData();
+                imgFormData.append('image', profileImage);
+
+                // সরাসরি axios বা fetch দিয়ে ImgBB API তে হিট
+                const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                    method: 'POST',
+                    body: imgFormData
+                });
+                
+                const imgbbData = await imgbbResponse.json();
+                
+                if (imgbbData.success) {
+                    finalImageUrl = imgbbData.data.url; // ImgBB থেকে পাওয়া ডাইরেক্ট ইমেজ লিংক
+                } else {
+                    throw new Error("Image upload to ImgBB failed");
+                }
+            }
+
+            // ২. জেসন ডাটা তৈরি (যার মধ্যে ইমেজের লাইভ URL-টি থাকবে)
             const jsonData = {
                 fullName: formData.fullName,
                 title: formData.title,
@@ -107,6 +134,7 @@ const PortfolioBuilder = () => {
                 phone: formData.phone || '',
                 location: formData.location || '',
                 description: formData.description,
+                profileImage: finalImageUrl, // ডাটাবেজে এখন চমৎকার একটি CDN লিংক স্টোর হবে
                 resumeLink: formData.resumeLink || '',
                 github: formData.github || '',
                 linkedin: formData.linkedin || '',
@@ -116,16 +144,17 @@ const PortfolioBuilder = () => {
                 skills: formData.skills,
                 experiences: formData.experiences,
                 projects: formData.projects,
-                selectedTemplate: selectedTemplate // টেমপ্লেট যোগ করা হলো
+                selectedTemplate: selectedTemplate 
             };
 
             console.log('Sending data:', jsonData);
 
+            // ৩. আপনার ব্যাকএন্ড সার্ভারে ডাটা পাঠানো
             const response = await axios.post('/api/portfolio/create', jsonData);
             console.log('Response:', response.data);
 
             if (response.data.success) {
-                const liveLink = `http://localhost:3000/portfolio/${response.data.portfolioId}`;
+                const liveLink = `http://localhost:5173/portfolio/${response.data.portfolioId}`;
                 Swal.close();
                 Swal.fire({
                     title: 'Success! 🎉',
@@ -147,13 +176,12 @@ const PortfolioBuilder = () => {
             }
         } catch (error) {
             console.error("Error:", error);
-            Swal.fire({ title: 'Error!', text: error.response?.data?.error || 'Something went wrong', icon: 'error', background: '#1a1a2e', color: '#fff' });
+            Swal.fire({ title: 'Error!', text: error.message || 'Something went wrong', icon: 'error', background: '#1a1a2e', color: '#fff' });
         } finally {
             setLoading(false);
         }
     };
 
-    // স্টেপ লিস্ট আপডেট (6 স্টেপ)
     const steps = [
         { id: 1, name: 'Personal', icon: '👤' },
         { id: 2, name: 'Social', icon: '🔗' },

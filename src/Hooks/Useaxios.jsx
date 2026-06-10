@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 const Useaxios = () => {
     const axiosInstance = useMemo(() => {
