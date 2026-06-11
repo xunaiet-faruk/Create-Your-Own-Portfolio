@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Useaxios from '../../Hooks/Useaxios';
 import Swal from 'sweetalert2';
@@ -11,16 +10,16 @@ import Step4_Experience from './Step4_Experience';
 import Step5_Projects from './Step5_Projects';
 import Step6_Preview from './Step6_Preview';
 import Step6_TemplateSelector from './Step6_TemplateSelector';
+import { useState } from 'react';
 
-// আপনার ImgBB API Key এখানে বসান
 const IMGBB_API_KEY = "6bb83104364a756c7ef713ea4d6873a3";
 const PortfolioBuilder = () => {
     const axios = Useaxios();
     const [step, setStep] = useState(1);
     const [preview, setPreview] = useState(false);
     const [currentSkill, setCurrentSkill] = useState('');
-    const [profileImage, setProfileImage] = useState(null); // আসল ফাইলটি এখানে থাকবে
-    const [profileImagePreview, setProfileImagePreview] = useState(''); // প্রিভিউ দেখানোর জন্য
+    const [profileImage, setProfileImage] = useState(null);
+    const [profileImagePreview, setProfileImagePreview] = useState('');
     const [loading, setLoading] = useState(false);
     const [generatedLink, setGeneratedLink] = useState(null);
     const [selectedTemplate, setSelectedTemplate] = useState('modern-dark');
@@ -190,8 +189,7 @@ const PortfolioBuilder = () => {
         { id: 5, name: 'Projects', icon: '📁' },
         { id: 6, name: 'Template', icon: '🎨' }
     ];
-
-    return (
+return (
         <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
             <div className="relative max-w-6xl mx-auto">
                 <Heading />
@@ -225,12 +223,24 @@ const PortfolioBuilder = () => {
                             </div>
                         </form>
                     ) : (
-                        <Step6_Preview formData={formData} profileImagePreview={profileImagePreview} setPreview={setPreview} handleSubmit={handleSubmit} loading={loading} />
+                        /* 🆕 এখানে selectedTemplate পাস করা হয়েছে এবং setPreview এর সাথে setStep(6) হ্যান্ডেল করা হয়েছে */
+                        <Step6_Preview 
+                            formData={formData} 
+                            profileImagePreview={profileImagePreview} 
+                            selectedTemplate={selectedTemplate} 
+                            setPreview={(val) => {
+                                setPreview(val);
+                                if (!val) setStep(6); // প্রিভিউ বন্ধ করলে যাতে আবার টেমপ্লেট সিলেক্টরে ফিরে যায়
+                            }} 
+                            handleSubmit={handleSubmit} 
+                            loading={loading} 
+                        />
                     )}
                 </motion.div>
             </div>
         </section>
     );
+
 };
 
 export default PortfolioBuilder;

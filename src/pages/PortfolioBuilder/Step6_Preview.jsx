@@ -1,6 +1,6 @@
 import { FaEnvelope, FaPhone, FaLink, FaGithub, FaLinkedin, FaFacebook, FaTwitter, FaGlobe, FaCheck } from 'react-icons/fa';
 
-const Step6_Preview = ({ formData, profileImagePreview, setPreview, handleSubmit, loading }) => {
+const Step6_Preview = ({ formData, profileImagePreview, setPreview, handleSubmit, loading, selectedTemplate }) => {
     return (
         <div>
             <div className="text-center mb-6">
