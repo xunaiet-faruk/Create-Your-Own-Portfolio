@@ -13,8 +13,8 @@ const ModernDarkFooter = ({ data }) => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="w-full bg-gray-950 border-t border-gray-900 text-gray-500 py-6">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <footer className="container mx-auto bg-gray-950 border-t border-gray-900 text-gray-500 py-6">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                 
                 {/* ১. বাম পাশ: কপিরাইট টেক্সট */}
                 <div className="text-sm font-medium tracking-wide text-center sm:text-left">

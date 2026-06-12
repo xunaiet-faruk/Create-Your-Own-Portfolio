@@ -20,7 +20,6 @@ const ModernDarkBanner = ({ data }) => {
         },
     };
 
-    // সোশাল আইকনগুলোর SVG ম্যাপ (ইউজার ডাটার সাথে ম্যাচ করার জন্য)
     const socialIcons = {
         github: (
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -45,11 +44,9 @@ const ModernDarkBanner = ({ data }) => {
     };
 
     return (
-        <div className="w-full min-h-screen bg-gray-900 flex items-center justify-center pt-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center py-12 md:py-24">
-                
-                {/* 📝 বাম পাশের টেক্সট এবং সোশাল কন্টেন্ট */}
-                <motion.div 
+        <div className="container mx-auto bg-gray-900 flex items-center justify-center  px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div className=" w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center py-12 md:py-">
+                    <motion.div 
                     className="md:col-span-7 space-y-6 text-center md:text-left order-2 md:order-1"
                     variants={containerVariants}
                     initial="hidden"

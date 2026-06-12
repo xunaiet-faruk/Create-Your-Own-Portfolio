@@ -8,10 +8,8 @@ import ModernDarkProjects from '../../ComponentDesign/Moderdark/ModernDarkProjec
 import ModernDarkContact from '../../ComponentDesign/Moderdark/ModernDarkContact';
 import ModernDarkFooter from '../../ComponentDesign/Moderdark/ModernDarkFooter';
 
-// এটিই হবে আপনার পোর্টফোলিওর মেইন বেস স্ট্রাকচার
 const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     
-    // 🧭 NAVBAR: থিম অনুযায়ী আলাদা নেভবার
     const renderNavbar = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
@@ -23,7 +21,6 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
         }
     };
 
-    // 🚀 BANNER / HERO: থিম অনুযায়ী আলাদা ব্যানার
     const renderBanner = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
@@ -35,7 +32,6 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
         }
     };
 
-    // 👤 ABOUT: থিম অনুযায়ী আলাদা এবাউট সেকশন
     const renderAbout = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
@@ -47,7 +43,6 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
         }
     };
 
-    // 🛠️ SKILLS: থিম অনুযায়ী আলাদা স্কিলস সেকশন
     const renderSkills = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
@@ -59,7 +54,6 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
         }
     };
 
-    // 💼 EXPERIENCE: থিম অনুযায়ী আলাদা এক্সপেরিয়েন্স সেকশন
     const renderExperience = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
@@ -71,7 +65,6 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
         }
     };
 
-    // 📁 PROJECTS: থিম অনুযায়ী আলাদা প্রজেক্ট গ্রিড বা স্লাইডার
     const renderProjects = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
@@ -83,7 +76,6 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
         }
     };
 
-    // ✉️ CONTACT: থিম অনুযায়ী আলাদা কন্টাক্ট ফর্ম
     const renderContact = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
@@ -95,7 +87,6 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
         }
     };
 
-    // 👣 FOOTER: থিম অনুযায়ী আলাদা ফুটার
     const renderFooter = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
@@ -111,7 +102,7 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     // ২. মেইন রেসপন্সিভ লেআউট স্ট্রাকচার (The Skeleton)
     // ========================================================
     return (
-        <div className="w-full min-h-screen flex flex-col justify-between bg-gray-900">
+        <div className="w-full flex flex-col justify-between bg-gray-900">
             
             {/* ১. নেভবার ফিক্সড বা নরমাল লেআউট */}
             <nav className="w-full z-50">
