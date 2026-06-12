@@ -7,15 +7,27 @@ import ModernDarkExperience from '../../ComponentDesign/Moderdark/ModernDarkExpe
 import ModernDarkProjects from '../../ComponentDesign/Moderdark/ModernDarkProjects';
 import ModernDarkContact from '../../ComponentDesign/Moderdark/ModernDarkContact';
 import ModernDarkFooter from '../../ComponentDesign/Moderdark/ModernDarkFooter';
+import CleanWhiteNavbar from '../../ComponentDesign/CleanWhite/CleanWhiteNav';
+import CleanWhiteBanner from '../../ComponentDesign/CleanWhite/ClearwhiteBanner';
+import CleanWhiteAbout from '../../ComponentDesign/CleanWhite/ClearWhiteAbout';
+import CleanWhiteSkills from '../../ComponentDesign/CleanWhite/ClearWhiteSkills';
+import CleanWhiteExperience from '../../ComponentDesign/CleanWhite/ClearWhiteExperiance';
+import CleanWhiteProjects from '../../ComponentDesign/CleanWhite/CleanWhiteProject';
+import CleanWhiteContact from '../../ComponentDesign/CleanWhite/CleanWhiteContact';
+import CleanWhiteFooter from '../../ComponentDesign/CleanWhite/CleanWhiteFooter';
 
 const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     
     const renderNavbar = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
+                return <ModernDarkNavbar data={data}/>;
             case 'clean-white': 
+                return <CleanWhiteNavbar data={data}/>;
             case 'animated': 
+                return <ModernDarkNavbar data={data}/>;
             case 'cyberpunk': 
+                return <ModernDarkNavbar data={data}/>;
             default: 
                 return <ModernDarkNavbar data={data}/>;
         }
@@ -24,9 +36,13 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     const renderBanner = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
+                return <ModernDarkBanner data={data}/>;
             case 'clean-white': 
+                return <CleanWhiteBanner data={data}/>;
             case 'animated': 
+                return <ModernDarkBanner data={data}/>;
             case 'cyberpunk': 
+                return <ModernDarkBanner data={data}/>;
             default: 
                 return <ModernDarkBanner data={data}/>;
         }
@@ -35,9 +51,13 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     const renderAbout = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
+                return <ModernDarkAbout data={data} />;
             case 'clean-white': 
+                return <CleanWhiteAbout data={data} />;
             case 'animated': 
+                return <ModernDarkAbout data={data} />;
             case 'cyberpunk': 
+                return <ModernDarkAbout data={data} />;
             default: 
                 return <ModernDarkAbout data={data} />;
         }
@@ -46,9 +66,13 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     const renderSkills = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
+                return <ModernDarkSkills data={data} />;
             case 'clean-white': 
+                return <CleanWhiteSkills data={data} />;
             case 'animated': 
+                return <ModernDarkSkills data={data} />;
             case 'cyberpunk': 
+                return <ModernDarkSkills data={data} />;
             default: 
                 return <ModernDarkSkills data={data} />;
         }
@@ -57,9 +81,13 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     const renderExperience = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
+                return <ModernDarkExperience data={data} />;
             case 'clean-white': 
+                return <CleanWhiteExperience data={data} />;
             case 'animated': 
+                return <ModernDarkExperience data={data} />;
             case 'cyberpunk': 
+                return <ModernDarkExperience data={data} />;
             default: 
                 return <ModernDarkExperience data={data} />;
         }
@@ -68,9 +96,13 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     const renderProjects = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
+                return <ModernDarkProjects data={data} />;
             case 'clean-white': 
+                return <CleanWhiteProjects data={data} />;
             case 'animated': 
+                return <ModernDarkProjects data={data} />;
             case 'cyberpunk': 
+                return <ModernDarkProjects data={data} />;
             default: 
                 return <ModernDarkProjects data={data} />; 
         }
@@ -79,9 +111,13 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     const renderContact = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
+                return <ModernDarkContact data={data}/>;
             case 'clean-white': 
+                return <CleanWhiteContact data={data}/>;
             case 'animated': 
+                return <ModernDarkContact data={data}/>;
             case 'cyberpunk': 
+                return <ModernDarkContact data={data}/>;
             default: 
                 return <ModernDarkContact data={data}/>;
         }
@@ -90,9 +126,13 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     const renderFooter = () => {
         switch (selectedTemplate) {
             case 'modern-dark': 
+                return <ModernDarkFooter data={data}/>;
             case 'clean-white': 
+                return <CleanWhiteFooter data={data}/>;
             case 'animated': 
+                return <ModernDarkFooter data={data}/>;
             case 'cyberpunk': 
+                return <ModernDarkFooter data={data}/>;
             default: 
                 return <ModernDarkFooter data={data}/>;
         }
@@ -148,10 +188,9 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
                 </div>
             </main>
 
-            {/* ৮. ফুটার সেকশন (Full Width) */}
-            <footer className="w-full mt-auto">
+            <div className="w-full mt-auto">
                 {renderFooter()}
-            </footer>
+            </div>
 
         </div>
     );

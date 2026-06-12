@@ -44,7 +44,7 @@ const ModernDarkBanner = ({ data }) => {
     };
 
     return (
-        <div className="container mx-auto bg-gray-900 flex items-center justify-center  px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="container mx-auto bg-gray-900 flex items-center justify-center  px-4 sm:px-6 lg:px-8 overflow-hidden lg:py-20">
             <div className=" w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center py-12 md:py-">
                     <motion.div 
                     className="md:col-span-7 space-y-6 text-center md:text-left order-2 md:order-1"
