@@ -63,7 +63,7 @@ const CleanWhiteContact = ({ data }) => {
     };
 
     return (
-        <div className="w-full relative overflow-hidden py-16 md:py-24 bg-white">
+        <div className="w-full relative overflow-hidden py-16 md:py-5">
             
             {/* ডেকোরেটিভ ব্যাকগ্রাউন্ড */}
             <div className="absolute inset-0 overflow-hidden">

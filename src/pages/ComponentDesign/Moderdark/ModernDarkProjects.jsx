@@ -13,6 +13,17 @@ const ModernDarkProjects = ({ data }) => {
         ? projects 
         : projects.filter(p => p.category === filter);
     
+    // লিংক ওপেন করার ফাংশন
+    const openLink = (url) => {
+        if (url && url !== '#' && url !== '') {
+            let finalUrl = url;
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                finalUrl = 'https://' + url;
+            }
+            window.open(finalUrl, '_blank', 'noopener,noreferrer');
+        }
+    };
+    
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -157,10 +168,10 @@ const ModernDarkProjects = ({ data }) => {
                                             
                                             {/* ইমেজ কন্টেইনার */}
                                             <div className="relative h-52 overflow-hidden">
-                                                {project?.image ? (
+                                                {project?.imageUrl ? (
                                                     <>
                                                         <img 
-                                                            src={project.image} 
+                                                            src={project.imageUrl} 
                                                             alt={project.title}
                                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                                         />
@@ -231,13 +242,30 @@ const ModernDarkProjects = ({ data }) => {
                                                 
                                                 {/* লিংক বাটন */}
                                                 <div className="flex items-center gap-4 pt-3 mt-1">
-                                                    <motion.div 
-                                                        className="flex items-center gap-1 text-xs text-cyan-400 group/link"
-                                                        whileHover={{ x: 5 }}
-                                                    >
-                                                        <span>View Case Study</span>
-                                                        <span className="transform transition-transform group-hover/link:translate-x-1">→</span>
-                                                    </motion.div>
+                                                    {project.liveLink && project.liveLink !== '' && (
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                openLink(project.liveLink);
+                                                            }}
+                                                            className="flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 group/link transition-colors"
+                                                        >
+                                                            <span>Live Demo</span>
+                                                            <span className="transform transition-transform group-hover/link:translate-x-1">→</span>
+                                                        </button>
+                                                    )}
+                                                    {project.githubLink && project.githubLink !== '' && (
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                openLink(project.githubLink);
+                                                            }}
+                                                            className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-300 group/link transition-colors"
+                                                        >
+                                                            <span>GitHub</span>
+                                                            <span className="transform transition-transform group-hover/link:translate-x-1">→</span>
+                                                        </button>
+                                                    )}
                                                 </div>
                                             </div>
                                             
@@ -284,9 +312,9 @@ const ModernDarkProjects = ({ data }) => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="h-64 overflow-hidden">
-                                {selectedProject.image ? (
+                                {selectedProject.imageUrl ? (
                                     <img 
-                                        src={selectedProject.image} 
+                                        src={selectedProject.imageUrl} 
                                         alt={selectedProject.title}
                                         className="w-full h-full object-cover"
                                     />
@@ -314,25 +342,21 @@ const ModernDarkProjects = ({ data }) => {
                                 )}
                                 
                                 <div className="flex gap-4 pt-4">
-                                    {selectedProject.liveLink && (
-                                        <a 
-                                            href={selectedProject.liveLink}
-                                            target="_blank"
-                                            rel="noreferrer"
+                                    {selectedProject.liveLink && selectedProject.liveLink !== '' && (
+                                        <button
+                                            onClick={() => openLink(selectedProject.liveLink)}
                                             className="flex-1 text-center px-4 py-2 rounded-lg bg-cyan-500 text-white text-sm font-medium hover:bg-cyan-600 transition-colors"
                                         >
                                             Live Demo
-                                        </a>
+                                        </button>
                                     )}
-                                    {selectedProject.githubLink && (
-                                        <a 
-                                            href={selectedProject.githubLink}
-                                            target="_blank"
-                                            rel="noreferrer"
+                                    {selectedProject.githubLink && selectedProject.githubLink !== '' && (
+                                        <button
+                                            onClick={() => openLink(selectedProject.githubLink)}
                                             className="flex-1 text-center px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white text-sm font-medium hover:bg-gray-700 transition-colors"
                                         >
                                             GitHub
-                                        </a>
+                                        </button>
                                     )}
                                 </div>
                             </div>

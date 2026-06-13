@@ -138,11 +138,22 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
         }
     };
 
+    const templateBackground = {
+        'modern-dark': 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white',
+        'clean-white': 'bg-gray-50 text-gray-900',
+        'animated': 'bg-gradient-to-br from-purple-900 via-indigo-900 to-cyan-900 text-white',
+        'minimal': 'bg-gray-50 text-gray-900',
+        'glassmorphism': 'bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 text-white',
+        'cyberpunk': 'bg-gradient-to-br from-[#0A1515] via-[#220d2f] to-[#0f1833] text-cyan-300'
+    };
+
+    const wrapperClass = templateBackground[selectedTemplate] || templateBackground['modern-dark'];
+
     // ========================================================
     // ২. মেইন রেসপন্সিভ লেআউট স্ট্রাকচার (The Skeleton)
     // ========================================================
     return (
-        <div className="w-full flex flex-col justify-between bg-gray-900">
+        <div className={`w-full min-h-screen flex flex-col justify-between ${wrapperClass}`}>
             
             {/* ১. নেভবার ফিক্সড বা নরমাল লেআউট */}
             <nav className="w-full z-50">

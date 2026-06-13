@@ -11,6 +11,15 @@ const PortfolioView = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const templateBackground = {
+        'modern-dark': 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white',
+        'clean-white': 'bg-gray-50 text-gray-900',
+        'animated': 'bg-gradient-to-br from-purple-900 via-indigo-900 to-cyan-900 text-white',
+        'minimal': 'bg-gray-50 text-gray-900',
+        'glassmorphism': 'bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 text-white',
+        'cyberpunk': 'bg-gradient-to-br from-[#0A1515] via-[#220d2f] to-[#0f1833] text-cyan-300'
+    };
+
     useEffect(() => {
         const fetchPortfolio = async () => {
             try {
@@ -69,8 +78,12 @@ const PortfolioView = () => {
         );
     }
 
+    const pageBackgroundClass = portfolioData
+        ? templateBackground[portfolioData.selectedTemplate] || templateBackground['modern-dark']
+        : templateBackground['modern-dark'];
+
     return (
-        <div className="w-full">
+        <div className={`w-full min-h-screen ${pageBackgroundClass}`}>
             {portfolioData && (
                 <MainPortfolioStructure 
                     data={portfolioData} 
