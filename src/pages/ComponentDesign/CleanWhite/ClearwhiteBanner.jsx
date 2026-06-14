@@ -8,15 +8,18 @@ const CleanWhiteBanner = ({ data }) => {
     
     // রেজিউম ডাউনলোড ফাংশন
     const downloadResume = () => {
-        const resumeUrl = data?.resumeUrl || '/resume/sample-resume.pdf';
+        const resumeUrl = data?.resumeLink;
         
-        // যদি কাস্টম রেজিউম লিংক থাকে
-        if (data?.resumeUrl) {
-            window.open(resumeUrl, '_blank');
-        } else {
-            // ডেমো রেজিউম ডাউনলোড (আপনার ব্যাকএন্ড থেকে আসবে)
-            alert('Resume download started! (Demo)');
-            // এখানে আপনার একচুয়াল রেজিউম ডাউনলোড লজিক বসবে
+        // যদি রেজিউম লিংক থাকে
+        if (resumeUrl && resumeUrl !== '') {
+            // Google Drive, Dropbox, বা সাধারণ URL থেকে ডাউনলোড করুন
+            const link = document.createElement('a');
+            link.href = resumeUrl;
+            link.setAttribute('download', 'resume');
+            link.setAttribute('target', '_blank');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     };
     
@@ -65,7 +68,7 @@ const CleanWhiteBanner = ({ data }) => {
     };
     
     return (
-        <div className="relative w-full  flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white">
+        <div className="relative container mx-auto w-full  flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white">
             
             {/* ডেকোরেটিভ ব্যাকগ্রাউন্ড এলিমেন্টস */}
             <div className="absolute inset-0 overflow-hidden">

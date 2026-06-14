@@ -190,43 +190,8 @@ const CleanWhiteProjects = ({ data }) => {
                     </div>
                 )}
                 
-                {/* প্রজেক্ট স্ট্যাটস */}
-                {projects.length > 0 && (
-                    <motion.div 
-                        className="mt-12 pt-8 flex flex-wrap items-center justify-center gap-6 md:gap-12"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                    >
-                        <div className="text-center">
-                            <div className="text-2xl font-bold text-yellow-500">{projects.length}+</div>
-                            <div className="text-[10px] text-gray-400">Total Projects</div>
-                        </div>
-                        <div className="w-px h-6 bg-gray-200"></div>
-                        <div className="text-center">
-                            <div className="text-2xl font-bold text-yellow-500">
-                                {projects.filter(p => p.liveLink && p.liveLink !== '').length}
-                            </div>
-                            <div className="text-[10px] text-gray-400">Live Deployed</div>
-                        </div>
-                    </motion.div>
-                )}
-                
-                {/* ডেকোরেটিভ বটম */}
-                <motion.div 
-                    className="mt-10 pt-6 text-center"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                >
-                    <div className="inline-flex items-center gap-2 text-xs text-gray-300">
-                        <span>✦</span>
-                        <span>More projects coming soon</span>
-                        <span>✦</span>
-                    </div>
-                </motion.div>
+             
+               
             </div>
             
             {/* প্রজেক্ট ডিটেইলস মোডাল */}

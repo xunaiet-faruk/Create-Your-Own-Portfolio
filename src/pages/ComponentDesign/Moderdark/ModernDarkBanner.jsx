@@ -129,9 +129,9 @@ const ModernDarkBanner = ({ data }) => {
                         </a>
 
                         {/* 📥 🆕 অ্যানিমেটেড ডাউনলোড রেজুমি বাটন */}
-                        {data?.resumeUrl && (
+                        {data?.resumeLink && (
                             <motion.a 
-                                href={data.resumeUrl}
+                                href={data.resumeLink}
                                 download="Resume.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
