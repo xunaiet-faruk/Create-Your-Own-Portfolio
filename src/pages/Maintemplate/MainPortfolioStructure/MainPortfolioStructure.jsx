@@ -18,6 +18,7 @@ import CleanWhiteFooter from '../../ComponentDesign/CleanWhite/CleanWhiteFooter'
 import AnimatedNavbar from '../../ComponentDesign/Animated/AnimatedNavbar';
 import AnimatedBanner from '../../ComponentDesign/Animated/AnimatedBanner';
 import AnimatedAbout from '../../ComponentDesign/Animated/AnimatedAbout';
+import AnimatedSkills from '../../ComponentDesign/Animated/AnimatedSkills';
 
 const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     
@@ -73,7 +74,7 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
             case 'clean-white': 
                 return <CleanWhiteSkills data={data} />;
             case 'animated': 
-                return <ModernDarkSkills data={data} />;
+                return <AnimatedSkills data={data} />;
             case 'cyberpunk': 
                 return <ModernDarkSkills data={data} />;
             default: 

@@ -139,7 +139,7 @@ const PortfolioBuilder = () => {
                 phone: formData.phone || '',
                 location: formData.location || '',
                 description: formData.description,
-                profileImage: finalImageUrl, // ডাটাবেজে এখন চমৎকার একটি CDN লিংক স্টোর হবে
+                profileImage: finalImageUrl, 
                 resumeLink: formData.resumeLink || '',
                 userType: formData.userType,
                 github: formData.github || '',
