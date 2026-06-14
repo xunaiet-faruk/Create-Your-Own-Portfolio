@@ -1,6 +1,16 @@
-import { FaUser, FaTimes, FaUpload } from 'react-icons/fa';
+import { FaUser, FaTimes, FaUpload, FaCheck } from 'react-icons/fa';
 
 const Step1_PersonalInfo = ({ formData, setFormData, errors, profileImagePreview, handleImageUpload, removeImage }) => {
+    // পেশার তালিকা আইকন সহ
+    const professions = [
+        { id: 'developer', label: '💻 Developer', icon: '💻' },
+        { id: 'designer', label: '🎨 Designer', icon: '🎨' },
+        { id: 'marketer', label: '📊 Marketer', icon: '📊' },
+        { id: 'contentCreator', label: '📹 Content Creator', icon: '📹' },
+        { id: 'photographer', label: '📸 Photographer', icon: '📸' },
+        { id: 'writer', label: '✍️ Writer', icon: '✍️' },
+    ];
+
     return (
         <div className="space-y-6">
             <h3 className="text-2xl font-bold text-white mb-6">Personal Information</h3>
@@ -39,6 +49,20 @@ const Step1_PersonalInfo = ({ formData, setFormData, errors, profileImagePreview
                     <label className="block text-gray-300 mb-2">Professional Title *</label>
                     <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-cyan-500" />
                     {errors.title && <p className="text-red-400 text-sm mt-1">{errors.title}</p>}
+                </div>
+                <div>
+                    <label className="block text-gray-300 mb-2">Professional Category *</label>
+                    <select 
+                        value={formData.userType || ''} 
+                        onChange={(e) => setFormData({ ...formData, userType: e.target.value })}
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-cyan-500"
+                    >
+                        <option value="">Select your profession...</option>
+                        {professions.map((prof) => (
+                            <option key={prof.id} value={prof.id}>{prof.label}</option>
+                        ))}
+                    </select>
+                    {errors.userType && <p className="text-red-400 text-sm mt-1">{errors.userType}</p>}
                 </div>
                 <div>
                     <label className="block text-gray-300 mb-2">Email *</label>

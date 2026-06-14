@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { GetCompleteBannerContent } from '../../../component/Utils/GetRoleContent';
 
 const ModernDarkAbout = ({ data }) => {
+    const content = GetCompleteBannerContent(data);
     // Animation variants for better control
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -100,20 +102,16 @@ const ModernDarkAbout = ({ data }) => {
                             variants={itemVariants}
                             className="flex flex-wrap gap-6 mt-8 justify-start"
                         >
-                            {[
-                                { label: "Projects", value: "+20" },
-                                { label: "Experience", value: "4+ Years" },
-                                { label: "Clients", value: "Worldwide" }
-                            ].map((stat, idx) => (
+                            {content.stats?.map((stat, idx) => (
                                 <div key={idx} className="flex items-center gap-3">
                                     <div className="w-8 h-8 rounded-full bg-cyan-400/10 flex items-center justify-center">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400"></div>
+                                        <span className="text-lg">{stat.icon}</span>
                                     </div>
                                     <div>
-                                        <div className="text-white font-bold text-lg">{stat.value}</div>
+                                        <div className="text-white font-bold text-lg">{stat.number}</div>
                                         <div className="text-gray-500 text-xs tracking-wide">{stat.label}</div>
                                     </div>
-                                    {idx < 2 && <div className="w-px h-8 bg-white/10 mx-2"></div>}
+                                    {idx < content.stats.length - 1 && <div className="w-px h-8 bg-white/10 mx-2"></div>}
                                 </div>
                             ))}
                         </motion.div>

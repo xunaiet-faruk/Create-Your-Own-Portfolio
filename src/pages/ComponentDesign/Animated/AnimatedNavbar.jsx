@@ -107,7 +107,7 @@ const AnimatedNavbar = ({ data }) => {
             className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
                 isScrolled 
                     ? 'bg-gradient-to-r from-purple-900/95 to-indigo-900/95 backdrop-blur-md py-3 ' 
-                    : 'bg-gradient-to-r from-purple-900/80 to-indigo-900/80 backdrop-blur-sm py-5'
+                    : 'bg-gradient-to-r from-purple-900/95 to-indigo-900/95 backdrop-blur-sm py-5'
             }`}
             initial="hidden"
             animate="visible"

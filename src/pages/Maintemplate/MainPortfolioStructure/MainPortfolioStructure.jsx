@@ -17,6 +17,7 @@ import CleanWhiteContact from '../../ComponentDesign/CleanWhite/CleanWhiteContac
 import CleanWhiteFooter from '../../ComponentDesign/CleanWhite/CleanWhiteFooter';
 import AnimatedNavbar from '../../ComponentDesign/Animated/AnimatedNavbar';
 import AnimatedBanner from '../../ComponentDesign/Animated/AnimatedBanner';
+import AnimatedAbout from '../../ComponentDesign/Animated/AnimatedAbout';
 
 const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     
@@ -57,7 +58,7 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
             case 'clean-white': 
                 return <CleanWhiteAbout data={data} />;
             case 'animated': 
-                return <ModernDarkAbout data={data} />;
+                return <AnimatedAbout data={data} />;
             case 'cyberpunk': 
                 return <ModernDarkAbout data={data} />;
             default: 

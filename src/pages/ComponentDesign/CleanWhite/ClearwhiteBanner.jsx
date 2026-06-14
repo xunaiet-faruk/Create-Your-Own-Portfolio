@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { GetCompleteBannerContent } from '../../../component/Utils/GetRoleContent';
 
 const CleanWhiteBanner = ({ data }) => {
-    
-    // টাইপিং অ্যানিমেশনের জন্য টেক্সট
-    const roles = data?.roles || ['Frontend Developer', 'UI/UX Designer', 'React Expert'];
+    // সম্পূর্ণ ব্যানার কন্টেন্ট সংগ্রহ করা
+    const content = GetCompleteBannerContent(data);
     
     // রেজিউম ডাউনলোড ফাংশন
     const downloadResume = () => {
@@ -102,7 +102,7 @@ const CleanWhiteBanner = ({ data }) => {
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
                             </span>
                             <span className="text-sm font-medium text-yellow-600">
-                                👋 Welcome to my portfolio
+                                {content.greeting}
                             </span>
                         </motion.div>
                         
@@ -135,7 +135,7 @@ const CleanWhiteBanner = ({ data }) => {
                             variants={itemVariants}
                             className="text-gray-500 text-base md:text-lg max-w-lg mx-auto lg:mx-0 leading-relaxed"
                         >
-                            {data?.bio || data?.description || "I'm a passionate developer who loves building innovative and user-friendly digital experiences that make a difference."}
+                            {content.description || content.bio}
                         </motion.p>
                         
                         {/* সোশ্যাল লিংকস */}

@@ -11,6 +11,7 @@ import Step5_Projects from './Step5_Projects';
 import Step6_Preview from './Step6_Preview';
 import Step6_TemplateSelector from './Step6_TemplateSelector';
 import { useState } from 'react';
+import { DetectUserType } from '../../component/Utils/DetectUserType';
 
 const IMGBB_API_KEY = "6bb83104364a756c7ef713ea4d6873a3";
 const PortfolioBuilder = () => {
@@ -27,7 +28,7 @@ const PortfolioBuilder = () => {
     const [formData, setFormData] = useState({
         fullName: '', title: '', email: '', phone: '', description: '', resumeLink: '', location: '',
         github: '', linkedin: '', facebook: '', twitter: '', website: '',
-        skills: [], experiences: [], projects: []
+        skills: [], experiences: [], projects: [], userType: ''
     });
 
     const [currentExp, setCurrentExp] = useState({ title: '', company: '', period: '', description: '' });
@@ -73,6 +74,11 @@ const PortfolioBuilder = () => {
 
     const handleNext = () => {
         if (validateStep()) {
+            // Step 1 থেকে পরবর্তী ধাপে যাওয়ার সময় স্বয়ংক্রিয় ডিটেকশন
+            if (step === 1 && !formData.userType) {
+                const detectedType = DetectUserType(formData);
+                setFormData({ ...formData, userType: detectedType });
+            }
             setStep(step + 1);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -135,6 +141,7 @@ const PortfolioBuilder = () => {
                 description: formData.description,
                 profileImage: finalImageUrl, // ডাটাবেজে এখন চমৎকার একটি CDN লিংক স্টোর হবে
                 resumeLink: formData.resumeLink || '',
+                userType: formData.userType,
                 github: formData.github || '',
                 linkedin: formData.linkedin || '',
                 facebook: formData.facebook || '',

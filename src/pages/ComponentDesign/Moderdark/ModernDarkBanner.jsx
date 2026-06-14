@@ -1,7 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { RoleBasedContent } from '../../../component/Utils/RoleBasedContent';
 
 const ModernDarkBanner = ({ data }) => {
+    // ইউজার টাইপের উপর ভিত্তি করে কন্টেন্ট সিলেক্ট করা
+    const userType = data?.userType || 'developer';
+    const roleContent = RoleBasedContent[userType] || RoleBasedContent.developer;
     // ফ্রেমার মোশন অ্যানিমেশন কনফিগ
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -56,7 +60,7 @@ const ModernDarkBanner = ({ data }) => {
                         variants={itemVariants}
                         className="text-cyan-400 font-mono tracking-widest text-sm uppercase bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20 inline-block"
                     >
-                        Available for Work
+                        {roleContent.greeting}
                     </motion.span>
 
                     <motion.h1 
@@ -77,7 +81,7 @@ const ModernDarkBanner = ({ data }) => {
                         variants={itemVariants}
                         className="text-base sm:text-lg text-gray-400 max-w-xl mx-auto md:mx-0 leading-relaxed"
                     >
-                        {data?.description || 'I build scalable, modern, and highly interactive web applications.'}
+                        {data?.description || roleContent.bio || 'I build scalable, modern, and highly interactive web applications.'}
                     </motion.p>
 
                     {/* ✨ অসাম অ্যানিমেটেড সোশাল আইকন গ্রুপ */}
@@ -119,7 +123,7 @@ const ModernDarkBanner = ({ data }) => {
                             href="#contact" 
                             className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold rounded-xl shadow-lg shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-1"
                         >
-                            Let's Talk
+                            {roleContent.buttonText || "View My Work"}
                         </a>
                         <a 
                             href="#projects" 

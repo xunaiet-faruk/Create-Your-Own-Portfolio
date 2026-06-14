@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { GetCompleteBannerContent } from '../../../component/Utils/GetRoleContent';
 
 const ModernDarkSkills = ({ data }) => {
     const skills = data?.skills || [];
+    const content = GetCompleteBannerContent(data);
+    const focusAreas = content.focusAreas || [];
     
     // ইউনিক অ্যানিমেশন ভেরিয়েন্টস
     const containerVariants = {

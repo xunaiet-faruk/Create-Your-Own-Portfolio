@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Torus, MeshDistortMaterial } from '@react-three/drei';
+import { GetCompleteBannerContent } from '../../../component/Utils/GetRoleContent';
 
 const Floating3DRings = () => {
     const ringRef1 = useRef();
