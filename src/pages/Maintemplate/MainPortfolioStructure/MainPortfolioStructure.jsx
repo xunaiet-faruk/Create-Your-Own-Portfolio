@@ -19,6 +19,9 @@ import AnimatedNavbar from '../../ComponentDesign/Animated/AnimatedNavbar';
 import AnimatedBanner from '../../ComponentDesign/Animated/AnimatedBanner';
 import AnimatedAbout from '../../ComponentDesign/Animated/AnimatedAbout';
 import AnimatedSkills from '../../ComponentDesign/Animated/AnimatedSkills';
+import AnimatedworkExpeiance from '../../ComponentDesign/Animated/AnimatedworkExpeiance';
+import AnimatedProject from '../../ComponentDesign/Animated/AnimatedProject';
+import AnimatedContact from '../../ComponentDesign/Animated/AnimatedContact';
 
 const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     
@@ -89,7 +92,7 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
             case 'clean-white': 
                 return <CleanWhiteExperience data={data} />;
             case 'animated': 
-                return <ModernDarkExperience data={data} />;
+                return <AnimatedworkExpeiance data={data} />;
             case 'cyberpunk': 
                 return <ModernDarkExperience data={data} />;
             default: 
@@ -104,7 +107,7 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
             case 'clean-white': 
                 return <CleanWhiteProjects data={data} />;
             case 'animated': 
-                return <ModernDarkProjects data={data} />;
+                return <AnimatedProject data={data} />;
             case 'cyberpunk': 
                 return <ModernDarkProjects data={data} />;
             default: 
@@ -119,7 +122,7 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
             case 'clean-white': 
                 return <CleanWhiteContact data={data}/>;
             case 'animated': 
-                return <ModernDarkContact data={data}/>;
+                return <AnimatedContact data={data}/>;
             case 'cyberpunk': 
                 return <ModernDarkContact data={data}/>;
             default: 

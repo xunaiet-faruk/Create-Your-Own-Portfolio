@@ -168,7 +168,7 @@ const AnimatedSkills = ({ data }) => {
     if (skillsData.length === 0) return null;
 
     return (
-        <section className="relative w-full py-24 px-6 sm:px-12 lg:px-32 bg-transparent overflow-hidden select-none">
+        <section className="relative w-full py-12 px-6 sm:px-12 lg:px-32 bg-transparent overflow-hidden select-none">
             
             {/* ব্যাকগ্রাউন্ড লার্জ কাইনেটিক টাইপোগ্রাফি */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.01] flex items-center whitespace-nowrap">
@@ -239,11 +239,7 @@ const AnimatedSkills = ({ data }) => {
                     </AnimatePresence>
                 </motion.div>
 
-                {/* ডাইনামিক টেকনিক্যাল ফুটার মেটা */}
-                <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono text-white/20 tracking-widest">
-                    <div>[ TOTAL_MODULES: {skillsData.length} ]</div>
-                    <div>[ ENGINE_STATUS: ACTIVE ]</div>
-                </div>
+             
 
             </div>
         </section>
