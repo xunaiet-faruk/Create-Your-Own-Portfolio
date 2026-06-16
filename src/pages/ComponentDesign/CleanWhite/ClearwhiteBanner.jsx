@@ -9,9 +9,8 @@ const CleanWhiteBanner = ({ data }) => {
     const downloadResume = () => {
         const resumeUrl = data?.resumeLink;
         
-        // যদি রেজিউম লিংক থাকে
         if (resumeUrl && resumeUrl !== '') {
-            // Google Drive, Dropbox, বা সাধারণ URL থেকে ডাউনলোড করুন
+
             const link = document.createElement('a');
             link.href = resumeUrl;
             link.setAttribute('download', 'resume');

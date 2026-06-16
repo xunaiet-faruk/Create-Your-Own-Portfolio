@@ -11,35 +11,37 @@ const ProjectCard = ({ project, index, totalProjects, progress }) => {
     const exitStart = end - segment * 0.2;
     const exitEnd = end;
 
-    // x, y এবং অন্যান্য অ্যানিমেশন ভ্যালুগুলো নিখুঁত করা হয়েছে
+    // ১ম কার্ডের ক্ষেত্রে স্ক্রল করার আগে থেকেই স্ক্রিনে সেন্টারে (0%) থাকবে, পরের কার্ডগুলো ডান পাশে (100%) থাকবে
+    const initialX = index === 0 ? "0%" : "100%";
+
     const x = useTransform(
         progress, 
         [entryStart, entryEnd, exitStart, exitEnd], 
-        ["100%", "0%", "0%", "-100%"]
+        [initialX, "0%", "0%", "-100%"]
     );
     
     const rotate = useTransform(
         progress, 
         [entryStart, entryEnd, exitEnd], 
-        [12, 0, -12]
+        [index === 0 ? 0 : 12, 0, -12]
     );
     
     const scale = useTransform(
         progress, 
         [entryStart, entryEnd, exitStart, exitEnd], 
-        [0.7, 1, 1, 0.7]
+        [index === 0 ? 1 : 0.8, 1, 1, 0.8]
     );
     
     const opacity = useTransform(
         progress, 
         [entryStart, entryEnd, exitStart, exitEnd], 
-        [0, 1, 1, 0]
+        [index === 0 ? 1 : 0, 1, 1, 0]
     );
 
     const y = useTransform(
         progress, 
         [entryStart, entryEnd, exitEnd], 
-        [80, 0, -80]
+        [index === 0 ? 0 : 60, 0, -60]
     );
 
     return (
@@ -52,8 +54,6 @@ const ProjectCard = ({ project, index, totalProjects, progress }) => {
                 opacity,
                 zIndex: totalProjects - index,
                 position: "absolute",
-                top: 0,
-                left: 0,
                 width: "100%",
                 height: "100%",
                 display: "flex",
@@ -61,7 +61,7 @@ const ProjectCard = ({ project, index, totalProjects, progress }) => {
                 justifyContent: "center"
             }}
         >
-            <div className="w-full max-w-3xl h-[420px] bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-10 flex flex-col justify-between group relative overflow-hidden">
+            <div className="w-full max-w-3xl h-[420px] bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-10 flex flex-col justify-between group relative overflow-hidden shadow-2xl">
                 
                 {/* হোভার ইফেক্ট */}
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.05] via-transparent to-purple-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -163,7 +163,6 @@ const AnimatedProject = ({ data }) => {
         setIsClient(true);
     }, []);
 
-    // Scroll progress নিখুঁত ট্র্যাকিংয়ের জন্য উইন্ডো অবসেট ফিক্সড
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
@@ -195,11 +194,11 @@ const AnimatedProject = ({ data }) => {
         return null; 
     }
 
-    // প্রতি কার্ডের জন্য স্ক্রল এরিয়া ভিউপোর্ট হাইট
-    const scrollHeight = `${projectList.length * 120}vh`;
+    // প্রতিটা কার্ডের জন্য ১৫০ভিয়েইচ ট্রাক এরিয়া রাখা হয়েছে স্ক্রলিং স্মুথনেস মেইনটেইনের জন্য
+    const scrollHeight = `${projectList.length * 150}vh`;
 
     return (
-        <div ref={containerRef} className="relative w-full block">
+        <div ref={containerRef} className="relative w-full block bg-transparent">
             
             {/* সেকশন হেডার */}
             <div className="relative z-20 pt-12 pb-4 text-center">
@@ -216,11 +215,11 @@ const AnimatedProject = ({ data }) => {
             {/* স্ক্রলিং ট্র্যাক এরিয়া */}
             <div style={{ height: scrollHeight }} className="w-full relative block">
                 
-                {/* স্টিকি ভিউপোর্ট - এটি স্ক্রিনের মাঝখানে কার্ড আটকে রাখবে */}
-                <div className="sticky top-0 left-0 w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-8">
+                {/* স্টিকি ভিউপোর্ট */}
+                <div className="sticky top-0 left-0 w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-8 z-10">
                     
-                    {/* কার্ড কন্টেইনার - ফিক্সড সেন্টারিং লেআউট */}
-                    <div className="relative w-full max-w-3xl h-[420px] flex items-center justify-center">
+                    {/* কার্ড কন্টেইনার */}
+                    <div className="relative w-full max-w-3xl h-[420px]">
                         {isClient && projectList.map((project, index) => (
                             <ProjectCard 
                                 key={project.id || index} 

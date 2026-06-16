@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+// sweetalert2 ইনস্টল করা থাকলে এটি কাজ করবে, না থাকলে শুধু উইন্ডো ওপেন হবে
+import Swal from 'sweetalert2'; 
 
 const AnimatedNavbar = ({ data }) => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -10,7 +12,6 @@ const AnimatedNavbar = ({ data }) => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
             
-            // স্ক্রল করার সময় কোন সেকশনে আছেন তা ডিটেক্ট করুন
             const sections = ['home', 'about', 'skills', 'projects', 'contact'];
             let current = '';
             
@@ -30,7 +31,6 @@ const AnimatedNavbar = ({ data }) => {
         };
         
         window.addEventListener('scroll', handleScroll);
-        // পেজ লোড হলে একবার কল করুন
         handleScroll();
         
         return () => window.removeEventListener('scroll', handleScroll);
@@ -48,7 +48,7 @@ const AnimatedNavbar = ({ data }) => {
         e.preventDefault();
         const element = document.getElementById(id);
         if (element) {
-            const offset = 70; // নেভবারের উচ্চতা
+            const offset = 70;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - offset;
             
@@ -93,12 +93,23 @@ const AnimatedNavbar = ({ data }) => {
         }
     };
 
-    // রেসিউম ডাউনলোড ফাংশন
+    // একদম সিম্পল রিডাইরেক্ট ফাংশন
     const downloadResume = () => {
-        if (data?.resumeUrl) {
-            window.open(data.resumeUrl, '_blank');
+        const resumeUrl = data?.resumeLink || data?.resumeUrl;
+        
+        if (resumeUrl) {
+            // ইউজার যে লিঙ্কই দিক না কেন, সরাসরি নতুন ট্যাবে রিডাইরেক্ট হবে
+            window.open(resumeUrl, '_blank');
         } else {
-            alert('Resume download started!');
+            // লিঙ্ক না থাকলে সুন্দর সুইটঅ্যালার্ট নোটিফিকেশন
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Resume link is not available right now!',
+                background: '#1e1b4b', // আপনার ডার্ক থিমের সাথে ম্যাচিং ব্যাকগ্রাউন্ড
+                color: '#f3e8ff',
+                confirmButtonColor: '#a855f7'
+            });
         }
     };
 
@@ -106,8 +117,8 @@ const AnimatedNavbar = ({ data }) => {
         <motion.nav 
             className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
                 isScrolled 
-                    ? 'bg-gradient-to-r from-purple-900/95 to-indigo-900/95 backdrop-blur-md py-3 ' 
-                    : 'bg-gradient-to-r from-purple-900/95 to-indigo-900/95 backdrop-blur-sm py-5'
+                    ? ' py-3 ' 
+                    : ' py-5'
             }`}
             initial="hidden"
             animate="visible"
@@ -116,7 +127,7 @@ const AnimatedNavbar = ({ data }) => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between">
                     
-                    {/* লোগো - home এ ক্লিক করলে যাবে */}
+                    {/* লোগো */}
                     <motion.a
                         href="#home"
                         onClick={(e) => scrollToSection(e, 'home')}
@@ -150,9 +161,9 @@ const AnimatedNavbar = ({ data }) => {
                         />
                     </motion.a>
 
-                    {/* ডেস্কটপ মেনু */}
+                    {/* ডেস্কটপ মেনু লিঙ্কসমূহ */}
                     <div className="hidden md:flex items-center space-x-1">
-                        {navLinks.map((link, index) => (
+                        {navLinks.map((link) => (
                             <motion.button
                                 key={link.id}
                                 onClick={(e) => scrollToSection(e, link.id)}
@@ -169,7 +180,6 @@ const AnimatedNavbar = ({ data }) => {
                                     <span>{link.name}</span>
                                 </span>
                                 
-                                {/* অ্যাক্টিভ ইন্ডিকেটর */}
                                 {activeSection === link.id && (
                                     <motion.span
                                         layoutId="activeAnimatedNav"
@@ -181,13 +191,12 @@ const AnimatedNavbar = ({ data }) => {
                                     />
                                 )}
                                 
-                                {/* হোভার ব্যাকগ্রাউন্ড */}
                                 <span className="absolute inset-0 rounded-lg bg-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </motion.button>
                         ))}
                     </div>
 
-                    {/* রেসিউম বাটন */}
+                    {/* ডেস্কটপ রেজুমে বাটন */}
                     <motion.button
                         onClick={downloadResume}
                         className="hidden md:block relative group cursor-pointer"
@@ -214,7 +223,7 @@ const AnimatedNavbar = ({ data }) => {
                         </div>
                     </motion.button>
 
-                    {/* মোবাইল মেনু বাটন */}
+                    {/* মোবাইল মেনু টগল বাটন */}
                     <motion.button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         className="md:hidden p-2 rounded-lg bg-purple-500/20 text-purple-200 hover:bg-purple-500/30 transition-colors cursor-pointer"
@@ -231,7 +240,7 @@ const AnimatedNavbar = ({ data }) => {
                 </div>
             </div>
 
-            {/* মোবাইল মেনু */}
+            {/* মোবাইল ড্রপডাউন মেনু */}
             <motion.div 
                 className={`md:hidden absolute top-full left-0 w-full bg-gradient-to-r from-purple-900 to-indigo-900 shadow-2xl overflow-hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}
                 initial={{ opacity: 0, height: 0 }}
@@ -269,7 +278,7 @@ const AnimatedNavbar = ({ data }) => {
                         </motion.button>
                     ))}
                     
-                    {/* মোবাইলে রেসিউম বাটন */}
+                    {/* মোবাইলে রেজুমে বাটন */}
                     <motion.button
                         onClick={downloadResume}
                         className="flex items-center justify-center gap-2 mt-4 px-4 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white text-center font-semibold w-full cursor-pointer"

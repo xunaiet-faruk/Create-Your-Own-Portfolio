@@ -11,7 +11,7 @@ const Floating3DRings = () => {
     useFrame((state) => {
         const t = state.clock.getElapsedTime();
         
-        // প্রথম রিংটির পজিশন ও রোটেশন (স্মুথ থ্রি-ডি টুইস্ট)
+     
         if (ringRef1.current) {
             ringRef1.current.position.y = Math.sin(t * 0.4) * 0.2;
             ringRef1.current.rotation.x = t * 0.2;

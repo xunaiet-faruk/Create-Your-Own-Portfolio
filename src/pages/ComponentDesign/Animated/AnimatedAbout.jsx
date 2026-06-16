@@ -34,7 +34,7 @@ const AnimatedAbout = ({ data }) => {
         userImage: data?.profileImage || data?.avatar || null,
     };
     
-    // স্লাইড গুলো - গ্লাস ইফেক্ট এর জন্য
+    
     const slides = [
         { icon: "🎯", title: "My Mission", desc: "Creating meaningful digital experiences that solve real problems." },
         { icon: "💡", title: "My Vision", desc: "Delivering excellence that makes a lasting impact." },
@@ -75,17 +75,7 @@ const AnimatedAbout = ({ data }) => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                    <motion.div 
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-400/30 mb-5"
-                        whileHover={{ scale: 1.05 }}
-                    >
-                        <motion.div 
-                            className="w-2 h-2 rounded-full bg-purple-400"
-                            animate={{ scale: [1, 1.5, 1] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                        />
-                        <span className="text-xs font-mono text-purple-200 tracking-wider">ABOUT ME</span>
-                    </motion.div>
+                
                     
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                         <span className="text-white">About </span>
