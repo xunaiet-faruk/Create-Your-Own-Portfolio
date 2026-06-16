@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const ProjectCard = ({ project, index, totalProjects, progress }) => {
     const segment = 1 / totalProjects;
@@ -11,6 +11,7 @@ const ProjectCard = ({ project, index, totalProjects, progress }) => {
     const exitStart = end - segment * 0.2;
     const exitEnd = end;
 
+    // x, y এবং অন্যান্য অ্যানিমেশন ভ্যালুগুলো নিখুঁত করা হয়েছে
     const x = useTransform(
         progress, 
         [entryStart, entryEnd, exitStart, exitEnd], 
@@ -53,14 +54,14 @@ const ProjectCard = ({ project, index, totalProjects, progress }) => {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                right: 0,
-                bottom: 0,
+                width: "100%",
+                height: "100%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center"
             }}
         >
-            <div className="w-full max-w-3xl h-[420px] bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-10 flex flex-col justify-between group relative overflow-hidden">
+            <div className="w-full max-w-3xl h-[420px] bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-10 flex flex-col justify-between group relative overflow-hidden">
                 
                 {/* হোভার ইফেক্ট */}
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.05] via-transparent to-purple-500/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -162,15 +163,10 @@ const AnimatedProject = ({ data }) => {
         setIsClient(true);
     }, []);
 
+    // Scroll progress নিখুঁত ট্র্যাকিংয়ের জন্য উইন্ডো অবসেট ফিক্সড
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
-    });
-
-    const springProgress = useSpring(scrollYProgress, { 
-        stiffness: 80,
-        damping: 25,
-        mass: 0.6
     });
 
     useEffect(() => {
@@ -199,14 +195,14 @@ const AnimatedProject = ({ data }) => {
         return null; 
     }
 
-    const scrollHeight = `${projectList.length * 150}vh`;
+    // প্রতি কার্ডের জন্য স্ক্রল এরিয়া ভিউপোর্ট হাইট
+    const scrollHeight = `${projectList.length * 120}vh`;
 
     return (
-        <div ref={containerRef} className="relative w-full min-h-screen">
+        <div ref={containerRef} className="relative w-full block">
             
             {/* সেকশন হেডার */}
             <div className="relative z-20 pt-12 pb-4 text-center">
-               
                 <h2 className="text-4xl md:text-5xl font-bold">
                     <span className="text-white">Featured </span>
                     <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">Projects</span>
@@ -217,24 +213,25 @@ const AnimatedProject = ({ data }) => {
                 </p>
             </div>
             
-            <div style={{ height: scrollHeight }} className="w-full relative">
+            {/* স্ক্রলিং ট্র্যাক এরিয়া */}
+            <div style={{ height: scrollHeight }} className="w-full relative block">
                 
-                <div className="sticky top-0 left-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-8">
+                {/* স্টিকি ভিউপোর্ট - এটি স্ক্রিনের মাঝখানে কার্ড আটকে রাখবে */}
+                <div className="sticky top-0 left-0 w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-8">
                     
-                    {/* কার্ড কন্টেইনার */}
-                    <div className="relative w-full max-w-3xl h-[500px]">
+                    {/* কার্ড কন্টেইনার - ফিক্সড সেন্টারিং লেআউট */}
+                    <div className="relative w-full max-w-3xl h-[420px] flex items-center justify-center">
                         {isClient && projectList.map((project, index) => (
                             <ProjectCard 
                                 key={project.id || index} 
                                 project={project} 
                                 index={index} 
                                 totalProjects={projectList.length}
-                                progress={springProgress} 
+                                progress={scrollYProgress} 
                             />
                         ))}
                     </div>
               
-
                 </div>
             </div>
         </div>

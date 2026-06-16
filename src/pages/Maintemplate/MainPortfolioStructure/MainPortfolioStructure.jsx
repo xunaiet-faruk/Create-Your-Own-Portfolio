@@ -22,6 +22,7 @@ import AnimatedSkills from '../../ComponentDesign/Animated/AnimatedSkills';
 import AnimatedworkExpeiance from '../../ComponentDesign/Animated/AnimatedworkExpeiance';
 import AnimatedProject from '../../ComponentDesign/Animated/AnimatedProject';
 import AnimatedContact from '../../ComponentDesign/Animated/AnimatedContact';
+import AnimatedFooter from '../../ComponentDesign/Animated/AnimatedFooter';
 
 const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     
@@ -137,7 +138,7 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
             case 'clean-white': 
                 return <CleanWhiteFooter data={data}/>;
             case 'animated': 
-                return <ModernDarkFooter data={data}/>;
+                return <AnimatedFooter data={data}/>;
             case 'cyberpunk': 
                 return <ModernDarkFooter data={data}/>;
             default: 
