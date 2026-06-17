@@ -88,7 +88,6 @@ const AnimatedProject = ({ data }) => {
   };
 
   return (
-    // ফিক্সড: overflow-x-clip ব্যবহার করা হয়েছে যেন সাইডের কোনো এনিমেশন স্ক্রিনের বাইরে স্ক্রলবার তৈরি করতে না পারে
     <div className="container mx-auto px-4 relative block bg-transparent my-12 overflow-x-clip">
       
       {/* সেকশন হেডার */}
@@ -105,7 +104,6 @@ const AnimatedProject = ({ data }) => {
       {/* স্লাইডার এরিয়া */}
       <div className="w-full flex flex-col items-center justify-center relative min-h-[520px]">
         
-        {/* ৩ডি পারসপেক্টিভ কন্টেইনার */}
         <div 
           style={{ perspective: 1600, transformStyle: "preserve-3d" }} 
           className="relative w-full max-w-3xl h-[440px] flex items-center justify-center"
