@@ -157,9 +157,6 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
 
     const wrapperClass = templateBackground[selectedTemplate] || templateBackground['modern-dark'];
 
-    // ========================================================
-    // ২. মেইন রেসপন্সিভ লেআউট স্ট্রাকচার (The Skeleton)
-    // ========================================================
     return (
         <div className={`w-full min-h-screen flex flex-col justify-between ${wrapperClass}`}>
             
