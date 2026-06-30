@@ -1,7 +1,6 @@
 import { FaUser, FaTimes, FaUpload, FaCheck } from 'react-icons/fa';
 
 const Step1_PersonalInfo = ({ formData, setFormData, errors, profileImagePreview, handleImageUpload, removeImage }) => {
-    // পেশার তালিকা আইকন সহ
     const professions = [
         { id: 'developer', label: '💻 Developer', icon: '💻' },
         { id: 'designer', label: '🎨 Designer', icon: '🎨' },
@@ -55,11 +54,11 @@ const Step1_PersonalInfo = ({ formData, setFormData, errors, profileImagePreview
                     <select 
                         value={formData.userType || ''} 
                         onChange={(e) => setFormData({ ...formData, userType: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-cyan-500"
+                        className="w-full px-4 py-3  bg-gray-800 rounded-lg text-white"
                     >
                         <option value="">Select your profession...</option>
                         {professions.map((prof) => (
-                            <option key={prof.id} value={prof.id}>{prof.label}</option>
+                            <option className='' key={prof.id} value={prof.id}>{prof.label}</option>
                         ))}
                     </select>
                     {errors.userType && <p className="text-red-400 text-sm mt-1">{errors.userType}</p>}

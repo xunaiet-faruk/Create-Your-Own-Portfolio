@@ -34,7 +34,6 @@ const AnimatedAbout = ({ data }) => {
         userImage: data?.profileImage || data?.avatar || null,
     };
     
-    
     const slides = [
         { icon: "🎯", title: "My Mission", desc: "Creating meaningful digital experiences that solve real problems." },
         { icon: "💡", title: "My Vision", desc: "Delivering excellence that makes a lasting impact." },
@@ -58,86 +57,141 @@ const AnimatedAbout = ({ data }) => {
         exit: { x: -300, opacity: 0, transition: { duration: 0.4 } }
     };
     
-   
     return (
-        <section className="relative w-full py-20 md:py-28 verflow-hidden">
+        <section className="relative w-full py-12 md:py-20 overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute top-10 right-10 w-48 h-48 md:w-72 md:h-72 bg-purple-500/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 left-10 w-56 h-56 md:w-80 md:h-80 bg-pink-500/20 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
             
-            <div className="absolute top-20 right-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 left-20 w-80 h-80 bg-pink-500/20 rounded-full blur-3xl"></div>
-            
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 
-                {/* সেকশন হেডার */}
+                {/* Section Header */}
                 <motion.div 
-                    className="text-center mb-12"
+                    className="text-center mb-8 md:mb-12"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
-                
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, type: "spring" }}
+                        className="inline-block mb-3"
+                    >
+                        <span className="px-4 py-1.5 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 rounded-full text-xs md:text-sm text-purple-300">
+                            ✦ Get to Know Me
+                        </span>
+                    </motion.div>
                     
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
                         <span className="text-white">About </span>
                         <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">Me</span>
                     </h2>
                     
                     <motion.div 
-                        className="w-20 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto mt-4"
+                        className="w-16 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto"
                         initial={{ width: 0 }}
-                        whileInView={{ width: 80 }}
+                        whileInView={{ width: 64 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     />
                 </motion.div>
                 
-                {/* মেইন কন্টেন্ট */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                {/* Main Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
                     
-                    {/* বাম দিকে - ইমেজ (শুধু চারপাশে বর্ডার অ্যানিমেশন) */}
-                    <div className="relative flex justify-center">
-                        <div className="relative">
-                            {/* শুধু বর্ডার অ্যানিমেশন - ইমেজের চারপাশে */}
-                            <motion.div 
-                                className="absolute -inset-2 rounded-2xl"
-                                animate={{ 
-                                    rotate: [0, 360]
-                                }}
-                              
-                              
+                    {/* Left - Image with Unique Design */}
+                    <motion.div 
+                        className="relative flex justify-center lg:justify-start"
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                            {/* Rotating Ring */}
+                            <motion.div
+                                className="absolute -inset-4 rounded-full border-2 border-dashed border-purple-400/30"
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             
-                            {/* ইমেজ */}
+                            {/* Second Ring */}
+                            <motion.div
+                                className="absolute -inset-8 rounded-full border-2 border-dashed border-pink-400/20"
+                                animate={{ rotate: -360 }}
+                                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                            />
+                            
+                            {/* Image Container */}
                             <motion.div 
-                                className="relative w-72 h-72 md:w-full md:h-full rounded-2xl overflow-hidden bg-gradient-to-br from-purple-600 to-pink-600"
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+                                className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-purple-600 to-pink-600 shadow-2xl shadow-purple-500/20"
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ duration: 0.3 }}
                             >
                                 {aboutData.userImage ? (
-                                    <img src={aboutData.userImage} alt={aboutData.name} className="w-full h-full object-cover" />
+                                    <img 
+                                        src={aboutData.userImage} 
+                                        alt={aboutData.name} 
+                                        className="w-full h-full object-cover"
+                                    />
                                 ) : (
-                                    <div className="w-full h-full flex flex-col items-center justify-center">
-                                        <span className="text-7xl mb-2">✨</span>
-                                        <span className="text-white/50 text-sm">{aboutData.name}</span>
+                                    <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
+                                        <span className="text-6xl md:text-7xl mb-3">✨</span>
+                                        <span className="text-white/60 text-sm md:text-base">{aboutData.name}</span>
                                     </div>
                                 )}
+                                
+                                {/* Overlay Gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-transparent"></div>
+                            </motion.div>
+                            
+                            {/* Floating Badge */}
+                            <motion.div
+                                className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-2 md:p-3 shadow-lg shadow-purple-500/30"
+                                animate={{ 
+                                    y: [0, -8, 0],
+                                    rotate: [0, 10, -10, 0]
+                                }}
+                                transition={{ 
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    repeatType: "reverse"
+                                }}
+                            >
+                                <span className="text-white text-xs md:text-sm font-bold">✦</span>
+                            </motion.div>
+                            
+                            {/* Experience Badge */}
+                            <motion.div
+                                className="absolute -top-2 -left-2 md:-top-4 md:-left-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-2 md:p-3 shadow-lg"
+                                initial={{ scale: 0 }}
+                                whileInView={{ scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3, type: "spring" }}
+                            >
+                                <div className="text-center">
+                                    <div className="text-lg md:text-xl font-bold text-white">{aboutData.experience}</div>
+                                    <div className="text-[8px] md:text-[10px] text-purple-300">Years of Excellence</div>
+                                </div>
                             </motion.div>
                         </div>
-                    </div>
+                    </motion.div>
                     
-                    {/* ডান দিকে - সকল কন্টেন্ট */}
+                    {/* Right - Content */}
                     <motion.div 
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        className="space-y-5"
+                        className="space-y-4"
                     >
                         <motion.div variants={itemVariants}>
-                            <h3 className="text-3xl font-bold text-white">{aboutData.name}</h3>
-                            <p className="text-purple-300 text-base mt-1">{aboutData.title}</p>
+                            <h3 className="text-2xl md:text-3xl font-bold text-white">{aboutData.name}</h3>
+                            <p className="text-purple-300 text-sm md:text-base mt-1">{aboutData.title}</p>
                         </motion.div>
                         
                         <motion.div variants={itemVariants} className="space-y-2">
@@ -145,9 +199,32 @@ const AnimatedAbout = ({ data }) => {
                             <p className="text-purple-200/60 text-sm leading-relaxed">{aboutData.bio2}</p>
                         </motion.div>
                         
-                        {/* স্লাইডিং সেকশন - গ্লাস ইফেক্ট (কোটের জায়গায়) */}
-                        <motion.div variants={itemVariants} className="relative pt-2">
-                            <div className="relative max-w-md">
+                        {/* Stats Grid - New Design */}
+                        <motion.div variants={itemVariants} className="grid grid-cols-3 gap-2 md:gap-3">
+                            {[
+                                { value: aboutData.experience, label: "Years Exp", icon: "📅" },
+                                { value: aboutData.projects, label: "Projects", icon: "🚀" },
+                                { value: aboutData.clients, label: "Clients", icon: "🤝" }
+                            ].map((stat, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    className="relative group"
+                                    whileHover={{ y: -4 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                                    <div className="relative text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-purple-400/30 transition-all duration-300">
+                                        <div className="text-lg md:text-xl mb-0.5">{stat.icon}</div>
+                                        <div className="text-lg md:text-xl font-bold text-white">{stat.value}</div>
+                                        <div className="text-[8px] md:text-[10px] text-purple-300">{stat.label}</div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                        
+                        {/* Sliding Section - New Design */}
+                        <motion.div variants={itemVariants} className="relative">
+                            <div className="relative overflow-hidden">
                                 <AnimatePresence mode="wait">
                                     <motion.div
                                         key={currentSlide}
@@ -155,34 +232,49 @@ const AnimatedAbout = ({ data }) => {
                                         initial="enter"
                                         animate="center"
                                         exit="exit"
-                                        className="p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"
+                                        className="relative p-4 md:p-5 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-white/10 backdrop-blur-sm"
                                     >
                                         <div className="flex items-start gap-3">
                                             <motion.div 
-                                                className="text-3xl"
-                                                animate={{ scale: [1, 1.1, 1] }}
-                                                transition={{ duration: 0.5 }}
+                                                className="text-2xl md:text-3xl flex-shrink-0"
+                                                animate={{ 
+                                                    scale: [1, 1.2, 1],
+                                                    rotate: [0, 10, -10, 0]
+                                                }}
+                                                transition={{ 
+                                                    duration: 2,
+                                                    repeat: Infinity,
+                                                    repeatType: "reverse"
+                                                }}
                                             >
                                                 {slides[currentSlide].icon}
                                             </motion.div>
-                                            <div>
-                                                <h4 className="text-white font-semibold text-sm">{slides[currentSlide].title}</h4>
-                                                <p className="text-purple-200/70 text-xs leading-relaxed mt-1">{slides[currentSlide].desc}</p>
+                                            <div className="flex-1 min-w-0">
+                                                <h4 className="text-white font-semibold text-sm md:text-base">{slides[currentSlide].title}</h4>
+                                                <p className="text-purple-200/70 text-xs md:text-sm leading-relaxed mt-1">{slides[currentSlide].desc}</p>
                                             </div>
                                         </div>
+                                        
+                                        {/* Animated Progress Bar */}
+                                        <motion.div
+                                            className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400"
+                                            initial={{ width: "0%" }}
+                                            animate={{ width: "100%" }}
+                                            transition={{ duration: 5, ease: "linear" }}
+                                        />
                                     </motion.div>
                                 </AnimatePresence>
                                 
-                                {/* ছোট নেভিগেশন */}
-                                <div className="flex justify-center gap-1 mt-3">
+                                {/* Navigation Dots - New Design */}
+                                <div className="flex justify-center gap-1.5 mt-3">
                                     {slides.map((_, idx) => (
                                         <button
                                             key={idx}
                                             onClick={() => setCurrentSlide(idx)}
                                             className={`transition-all duration-300 ${
                                                 currentSlide === idx
-                                                    ? 'w-4 h-1 bg-purple-400 rounded-full'
-                                                    : 'w-1 h-1 bg-purple-400/30 rounded-full'
+                                                    ? 'w-8 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full'
+                                                    : 'w-1.5 h-1.5 bg-purple-400/30 rounded-full hover:bg-purple-400/50'
                                             }`}
                                         />
                                     ))}
@@ -190,48 +282,35 @@ const AnimatedAbout = ({ data }) => {
                             </div>
                         </motion.div>
                         
-                        {/* স্ট্যাটস */}
-                        <motion.div variants={itemVariants} className="grid grid-cols-3 gap-3 pt-2">
-                            <div className="text-center p-2 rounded-xl bg-purple-500/10 border border-purple-400/20">
-                                <div className="text-xl font-bold text-white">{aboutData.experience}</div>
-                                <div className="text-[10px] text-purple-300">Years Exp</div>
-                            </div>
-                            <div className="text-center p-2 rounded-xl bg-purple-500/10 border border-purple-400/20">
-                                <div className="text-xl font-bold text-white">{aboutData.projects}</div>
-                                <div className="text-[10px] text-purple-300">Projects</div>
-                            </div>
-                            <div className="text-center p-2 rounded-xl bg-purple-500/10 border border-purple-400/20">
-                                <div className="text-xl font-bold text-white">{aboutData.clients}</div>
-                                <div className="text-[10px] text-purple-300">Clients</div>
-                            </div>
-                        </motion.div>
-                        
-                        {/* স্কিলস */}
-                        <motion.div variants={itemVariants}>
+                        {/* Skills & Focus Areas - New Design */}
+                        <motion.div variants={itemVariants} className="space-y-2">
                             <div className="flex flex-wrap gap-1.5">
                                 {aboutData.skills.map((skill, idx) => (
-                                    <span key={idx} className="px-2 py-1 bg-purple-500/20 border border-purple-400/30 rounded-full text-[10px] text-purple-200">
-                                        {skill}
-                                    </span>
+                                    <motion.span
+                                        key={idx}
+                                        className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-purple-600/20 border border-purple-400/20 rounded-full text-[10px] md:text-xs text-purple-200"
+                                        whileHover={{ scale: 1.05, borderColor: "#a855f7" }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        #{skill}
+                                    </motion.span>
                                 ))}
                             </div>
-                        </motion.div>
-                        
-                        {/* ফোকাস এরিয়া */}
-                        <motion.div variants={itemVariants}>
                             <div className="flex flex-wrap gap-1.5">
                                 {aboutData.focusAreas.map((area, idx) => (
-                                    <span key={idx} className="px-2 py-1 bg-pink-500/20 border border-pink-400/30 rounded-full text-[10px] text-pink-200">
-                                        {area}
-                                    </span>
+                                    <motion.span
+                                        key={idx}
+                                        className="px-3 py-1 bg-gradient-to-r from-pink-500/20 to-rose-500/20 border border-pink-400/20 rounded-full text-[10px] md:text-xs text-pink-200"
+                                        whileHover={{ scale: 1.05, borderColor: "#ec4899" }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        ✦ {area}
+                                    </motion.span>
                                 ))}
                             </div>
                         </motion.div>
                     </motion.div>
                 </div>
-                
-             
-                
             </div>
         </section>
     );

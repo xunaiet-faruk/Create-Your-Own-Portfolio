@@ -32,16 +32,7 @@ const templates = [
         accentColor: 'purple',
         previewBg: 'bg-gradient-to-br from-purple-900 to-indigo-900'
     },
-    {
-        id: 'minimal',
-        name: 'Minimalist',
-        icon: '📝',
-        description: 'Clean, simple, and professional',
-        bgColor: 'bg-gray-50',
-        textColor: 'text-gray-800',
-        accentColor: 'gray',
-        previewBg: 'bg-gray-50'
-    },
+   
     {
         id: 'glassmorphism',
         name: 'Glassmorphism',
@@ -51,17 +42,8 @@ const templates = [
         textColor: 'text-white',
         accentColor: 'cyan',
         previewBg: 'bg-gradient-to-br from-cyan-500/20 to-purple-500/20'
-    },
-    {
-        id: 'cyberpunk',
-        name: 'Cyberpunk',
-        icon: '🔥',
-        description: 'Neon borders, glitch effects, futuristic',
-        bgColor: 'bg-black',
-        textColor: 'text-cyan-400',
-        accentColor: 'cyan',
-        previewBg: 'bg-black'
     }
+   
 ];
 
 const Step6_TemplateSelector = ({ selectedTemplate, setSelectedTemplate, onNext, onBack }) => {

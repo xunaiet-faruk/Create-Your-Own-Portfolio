@@ -105,7 +105,7 @@ const AnimatedBanner = ({ data, onConnectClick, onWorkClick }) => {
 
     return (
         <div 
-            className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-transparent py-12 px-4 sm:px-8 lg:px-16 select-none"
+            className="relative w-full flex items-center justify-center overflow-hidden bg-transparent py-12 px-4 sm:px-8 lg:px-16 select-none"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
@@ -123,7 +123,7 @@ const AnimatedBanner = ({ data, onConnectClick, onWorkClick }) => {
             <div className="absolute top-[-5%] left-[-5%] w-[450px] h-[450px] rounded-full bg-cyan-500/10 blur-[120px] pointer-events-none z-0" />
             <div className="absolute bottom-[-5%] right-[-5%] w-[450px] h-[450px] rounded-full bg-purple-500/10 blur-[120px] pointer-events-none z-0" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full max-w-7xl relative z-10">
+            <div className="container mx-auto py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full max-w-7xl relative z-10">
                 
                 {/* বাম পাশের টেক্সট এরিয়া */}
                 <div className="lg:col-span-7 text-center lg:text-left space-y-5">

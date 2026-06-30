@@ -23,6 +23,7 @@ import AnimatedworkExpeiance from '../../ComponentDesign/Animated/AnimatedworkEx
 import AnimatedProject from '../../ComponentDesign/Animated/AnimatedProject';
 import AnimatedContact from '../../ComponentDesign/Animated/AnimatedContact';
 import AnimatedFooter from '../../ComponentDesign/Animated/AnimatedFooter';
+import GlassmorphismNav from '../../ComponentDesign/Glassmorphism/GlassmorphismNav';
 
 const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     
@@ -36,6 +37,8 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
                 return <AnimatedNavbar data={data}/>;
             case 'cyberpunk': 
                 return <ModernDarkNavbar data={data}/>;
+            case 'glassmorphism': 
+                return <GlassmorphismNav data={data}/>;
             default: 
                 return <ModernDarkNavbar data={data}/>;
         }
