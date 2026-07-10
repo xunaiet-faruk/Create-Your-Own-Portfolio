@@ -24,6 +24,9 @@ import AnimatedProject from '../../ComponentDesign/Animated/AnimatedProject';
 import AnimatedContact from '../../ComponentDesign/Animated/AnimatedContact';
 import AnimatedFooter from '../../ComponentDesign/Animated/AnimatedFooter';
 import GlassmorphismNav from '../../ComponentDesign/Glassmorphism/GlassmorphismNav';
+import GlassmorphismBanner from '../../ComponentDesign/Glassmorphism/GlassmorphismBanner';
+import GlassmorphismAbout from '../../ComponentDesign/Glassmorphism/GlassmorphismAbout';
+import GlassmorphismSkills from '../../ComponentDesign/Glassmorphism/GlassmorphismSkills';
 
 const MainPortfolioStructure = ({ data, selectedTemplate }) => {
     
@@ -54,6 +57,8 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
                 return <AnimatedBanner data={data}/>;
             case 'cyberpunk': 
                 return <ModernDarkBanner data={data}/>;
+                   case 'glassmorphism': 
+                return <GlassmorphismBanner data={data}/>;
             default: 
                 return <ModernDarkBanner data={data}/>;
         }
@@ -69,6 +74,8 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
                 return <AnimatedAbout data={data} />;
             case 'cyberpunk': 
                 return <ModernDarkAbout data={data} />;
+                   case 'glassmorphism': 
+                return <GlassmorphismAbout data={data}/>;
             default: 
                 return <ModernDarkAbout data={data} />;
         }
@@ -84,6 +91,8 @@ const MainPortfolioStructure = ({ data, selectedTemplate }) => {
                 return <AnimatedSkills data={data} />;
             case 'cyberpunk': 
                 return <ModernDarkSkills data={data} />;
+                   case 'glassmorphism': 
+                return <GlassmorphismSkills data={data}/>;
             default: 
                 return <ModernDarkSkills data={data} />;
         }

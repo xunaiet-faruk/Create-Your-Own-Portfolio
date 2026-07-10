@@ -24,7 +24,7 @@ const Step4_Experience = ({ formData, setFormData, currentExp, setCurrentExp }) 
             <div className="grid md:grid-cols-2 gap-4 p-4 bg-white/5 rounded-lg">
                 <input type="text" placeholder="Job Title" value={currentExp.title} onChange={(e) => setCurrentExp({ ...currentExp, title: e.target.value })} className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white" />
                 <input type="text" placeholder="Company" value={currentExp.company} onChange={(e) => setCurrentExp({ ...currentExp, company: e.target.value })} className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white" />
-                <input type="text" placeholder="Period (e.g., 2022-2024)" value={currentExp.period} onChange={(e) => setCurrentExp({ ...currentExp, period: e.target.value })} className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white" />
+                <input type="date" placeholder="Period (e.g., 2022-2024)" value={currentExp.period} onChange={(e) => setCurrentExp({ ...currentExp, period: e.target.value })} className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white" />
                 <textarea placeholder="Description" value={currentExp.description} onChange={(e) => setCurrentExp({ ...currentExp, description: e.target.value })} className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white" rows="2" />
                 <button type="button" onClick={addExperience} className="md:col-span-2 px-4 py-2 bg-green-500/20 text-green-400 rounded-lg font-semibold flex items-center justify-center gap-2"><FaPlus /> Add Experience</button>
             </div>
