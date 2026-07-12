@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+
 const Navbar = () => {
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -17,7 +19,8 @@ const Navbar = () => {
         { path: '/', name: 'Home' },
         { path: '/about', name: 'AboutUs' },
         { path: '/contact', name: 'Contact' },
-          { path: '/portfolio-builder', name: 'PortfolioBuilder' },
+        { path: '/portfolio-builder', name: 'PortfolioBuilder' },
+        { path: '/Mydashboard', name: 'My Dashboard' },
     ];
 
     return (
@@ -112,7 +115,7 @@ const Navbar = () => {
                             {link.name}
                         </NavLink>
                     ))}
-                    {/* Login Button in Mobile Menu */}
+                   
                     <button className="w-full mt-3 px-4 py-2 rounded-lg border-b border-cyan-600 rounded-full text-white transition-all duration-300">
                         Login 🔐
                     </button>

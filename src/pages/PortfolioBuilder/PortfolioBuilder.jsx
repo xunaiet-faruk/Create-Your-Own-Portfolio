@@ -41,9 +41,9 @@ const PortfolioBuilder = () => {
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setProfileImage(file); // ফাইলটি স্টেট-এ সেভ করে রাখছি পরে আপলোড করার জন্য
+            setProfileImage(file); 
             
-            // তাৎক্ষণিক ফ্রন্টএন্ড প্রিভিউ এর জন্য FileReader
+           
             const reader = new FileReader();
             reader.onloadend = () => {
                 setProfileImagePreview(reader.result);
@@ -160,7 +160,7 @@ const PortfolioBuilder = () => {
             console.log('Response:', response.data);
 
             if (response.data.success) {
-                const liveLink = `http://localhost:5173/portfolio/${response.data.portfolioId}`;
+                const liveLink = `http://localhost:5000/portfolio/${response.data.portfolioId}`;
                 Swal.close();
                 Swal.fire({
                     title: 'Success! 🎉',
