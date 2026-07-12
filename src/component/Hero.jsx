@@ -118,7 +118,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <div className="relative overflow-hidden ">
+        <div className="relative overflow-hidden bg-slate-950">
             {/* Ambient glow shapes */}
             <div className="absolute inset-0 overflow-hidden">
                 <motion.div
@@ -147,7 +147,7 @@ const Hero = () => {
                 }}
             />
 
-            <div className="relative z-10 container mx-auto px-6 lg:px-16 py-28 lg:py-10">
+            <div className="relative z-10 container mx-auto px-6 lg:px-16 py-28 lg:py-36">
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                     {/* Left - Copy */}
                     <div className="text-center lg:text-left order-2 lg:order-1">
@@ -157,7 +157,9 @@ const Hero = () => {
                             transition={{ duration: 0.6 }}
                             className="inline-flex items-center gap-2 mb-8"
                         >
-                          
+                            <span className="text-[11px] tracking-[0.3em] text-cyan-300 font-mono">
+                                ISSUED TO ANY PROFESSION
+                            </span>
                         </motion.div>
 
                         <motion.h1
